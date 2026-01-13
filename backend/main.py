@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 import shutil, uuid, json, os, traceback
 from ai_engine import analyze_image
 from routes.missing_pets import router as missing_pets_router
+from routes.auth_routes import router as auth_router
 
 
 app = FastAPI()
@@ -24,6 +25,7 @@ app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 # Include routers
 app.include_router(missing_pets_router)
+app.include_router(auth_router)
 
 # Reports file for /upload-report endpoint
 REPORTS_FILE = "data/reports.json"

@@ -77,3 +77,83 @@ def get_all_missing_pets():
         pets = json.load(f)
     
     return pets
+
+# User authentication JSON storage functions
+USERS_FILE = "data/users.json"
+
+def ensure_users_file():
+    """Ensure the users JSON file exists"""
+    os.makedirs("data", exist_ok=True)
+    if not os.path.exists(USERS_FILE):
+        with open(USERS_FILE, "w") as f:
+            json.dump([], f)
+
+def get_user_by_email(email):
+    """
+    Retrieve a user by email from the JSON file.
+    
+    Args:
+        email: Email address to search for
+    
+    Returns:
+        dict: User record if found, None otherwise
+    """
+    ensure_users_file()
+    
+    if not os.path.exists(USERS_FILE):
+        return None
+    
+    with open(USERS_FILE, "r") as f:
+        users = json.load(f)
+    
+    for user in users:
+        if user.get("email") == email:
+            return user
+    
+    return None
+
+def create_user(email, password_hash, role, name=None):
+    """
+    Create a new user in the JSON file.
+    
+    Args:
+        email: User's email address
+        password_hash: Hashed password
+        role: User role (citizen or partner)
+        name: Optional user name
+    
+    Returns:
+        dict: The created user record with id
+    """
+    ensure_users_file()
+    
+    with open(USERS_FILE, "r") as f:
+        users = json.load(f)
+    
+    # Check if user already exists
+    for user in users:
+        if user.get("email") == email:
+            return None  # User already exists
+    
+    # Generate ID (increment from highest existing ID or start at 1)
+    if users:
+        new_id = max(user.get("id", 0) for user in users) + 1
+    else:
+        new_id = 1
+    
+    # Create the user record
+    user_record = {
+        "id": new_id,
+        "email": email,
+        "password": password_hash,
+        "role": role,
+        "name": name or "",
+        "created_at": datetime.now().isoformat()
+    }
+    
+    users.append(user_record)
+    
+    with open(USERS_FILE, "w") as f:
+        json.dump(users, f, indent=2)
+    
+    return user_record

@@ -62,21 +62,84 @@ export default function Login() {
 
     setLoading(true);
     try {
-      // TODO: Replace with actual API call
-      // const endpoint = isLogin ? "/login" : "/signup";
-      // const response = await API.post(endpoint, {
-      //   ...formData,
-      //   userType
-      // });
+      // Map frontend userType to backend role
+      const role = userType === "ngo" ? "partner" : "citizen";
       
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Get name from form (organizationName for NGO, individualName for User)
+      const name = userType === "ngo" ? formData.organizationName : formData.individualName;
       
-      // On success, redirect to dashboard or home
-      alert(`✅ ${isLogin ? "Login" : "Registration"} successful! Welcome ${userType === "ngo" ? formData.organizationName || "NGO" : formData.individualName || "User"}!`);
-      navigate("/dashboard");
+      // Create FormData for the request
+      const formDataToSend = new FormData();
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append("password", formData.password);
+      formDataToSend.append("role", role);
+      if (name && name.trim()) {
+        formDataToSend.append("name", name.trim());
+      }
+
+      const endpoint = isLogin ? "/auth/login" : "/auth/register";
+      let response;
+      
+      try {
+        response = await fetch(`http://127.0.0.1:8000${endpoint}`, {
+          method: "POST",
+          body: formDataToSend
+        });
+      } catch (networkError) {
+        // Handle network errors (Failed to fetch)
+        console.error("Network error:", networkError);
+        throw new Error("Cannot connect to server. Please ensure the backend is running at http://127.0.0.1:8000");
+      }
+
+      if (!response.ok) {
+        let errorMessage = `Failed to ${isLogin ? "login" : "register"}`;
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.detail || errorData.message || errorMessage;
+        } catch (parseError) {
+          // If response is not JSON, try to get text
+          const textError = await response.text().catch(() => "");
+          errorMessage = textError || errorMessage;
+        }
+        throw new Error(errorMessage);
+      }
+
+      const data = await response.json();
+      
+      // Store authentication info in localStorage
+      if (isLogin && data.success) {
+        localStorage.setItem("isAuthenticated", "true");
+        localStorage.setItem("userRole", data.role);
+        localStorage.setItem("userId", data.id.toString());
+        localStorage.setItem("userEmail", formData.email);
+      } else if (!isLogin && data.success) {
+        // After registration, automatically log in
+        const loginFormData = new FormData();
+        loginFormData.append("email", formData.email);
+        loginFormData.append("password", formData.password);
+        loginFormData.append("role", role);
+        
+        const loginResponse = await fetch("http://127.0.0.1:8000/auth/login", {
+          method: "POST",
+          body: loginFormData
+        });
+        
+        if (loginResponse.ok) {
+          const loginData = await loginResponse.json();
+          localStorage.setItem("isAuthenticated", "true");
+          localStorage.setItem("userRole", loginData.role);
+          localStorage.setItem("userId", loginData.id.toString());
+          localStorage.setItem("userEmail", formData.email);
+        }
+      }
+      
+      // On success, redirect to home page
+      const welcomeName = userType === "ngo" ? formData.organizationName || "NGO" : formData.individualName || "User";
+      alert(`✅ ${isLogin ? "Login" : "Registration"} successful! Welcome ${welcomeName}!`);
+      navigate("/");
     } catch (err) {
-      setError(err.response?.data?.message || `Failed to ${isLogin ? "login" : "register"}. Please try again.`);
+      console.error("Authentication error:", err);
+      setError(err.message || `Failed to ${isLogin ? "login" : "register"}. Please try again.`);
     } finally {
       setLoading(false);
     }

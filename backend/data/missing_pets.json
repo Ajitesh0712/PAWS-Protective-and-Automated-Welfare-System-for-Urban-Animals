@@ -12,5 +12,12 @@
     "location": "sec 128 noida",
     "animal_type": "Cat",
     "created_at": "2026-01-14T00:34:21.457178"
+  },
+  {
+    "id": 3,
+    "image_path": "uploads/50c628f4-70fe-4db1-a5ba-1e6cbd260006.png",
+    "location": "noida",
+    "animal_type": "Unknown",
+    "created_at": "2026-01-14T00:56:01.207111"
   }
 ]
