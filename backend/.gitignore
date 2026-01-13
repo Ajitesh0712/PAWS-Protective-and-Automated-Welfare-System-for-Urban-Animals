@@ -1,0 +1,37 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Environment secrets
+.env
+
+# Database files
+data/
+*.sqlite
+*.db
+
+# Uploaded animal images
+uploads/
+
+# YOLO weights (too large for GitHub)
+yolov8n.pt
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
