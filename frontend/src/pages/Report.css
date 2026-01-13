@@ -1,0 +1,38 @@
+.report-page {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #fff8ee, #f6efe6);
+  padding-bottom: 60px;
+}
+
+.report-header {
+  text-align: center;
+  padding: 60px 20px 40px;
+  background: linear-gradient(135deg, #f2d1a8, #e8c49a);
+  box-shadow: 0 4px 15px rgba(120, 72, 40, 0.1);
+}
+
+.report-header h1 {
+  font-size: 42px;
+  color: #6f3f1d;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.report-description {
+  font-size: 16px;
+  color: #8a5a3a;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .report-header h1 {
+    font-size: 32px;
+  }
+  
+  .report-description {
+    font-size: 14px;
+    padding: 0 20px;
+  }
+}
