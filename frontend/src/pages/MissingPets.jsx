@@ -4,7 +4,7 @@ import "./missingPets.css";
 export default function MissingPets() {
   const [formData, setFormData] = useState({
     image: null,
-    location: ""
+    place: ""
   });
 
   // Dummy data for missing pets
@@ -68,12 +68,50 @@ export default function MissingPets() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // UI only - no actual submission
-    alert("Thank you for reporting! This is a demo - no data will be saved.");
-    setFormData({ image: null, location: "" });
+
+    if (!formData.image) {
+      alert("Please upload an image");
+      return;
+    }
+
+    if (!formData.place) {
+      alert("Please enter the place name");
+      return;
+    }
+
+    try {
+      // 1️⃣ Create FormData
+      const data = new FormData();
+      data.append("image", formData.image);
+      data.append("place", formData.place);
+
+      // 2️⃣ CONNECT TO BACKEND HERE 👇
+      const res = await fetch("http://127.0.0.1:8000/report-injury", {
+        method: "POST",
+        body: data
+      });
+      console.log(formData);
+
+      // 3️⃣ Handle response
+      const result = await res.json();
+      console.log("Backend response:", result);
+
+      alert("✅ Injury reported successfully");
+
+      // 4️⃣ Reset form
+      setFormData({
+        image: null,
+        place: ""
+      });
+
+    } catch (error) {
+      console.error(error);
+      alert("❌ Failed to submit report");
+    }
   };
+
 
   return (
     <div className="missing-pets-page">
