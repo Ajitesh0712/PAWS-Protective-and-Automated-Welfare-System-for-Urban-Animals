@@ -22,7 +22,7 @@ def save_reports(data):
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=2)
 
-@app.post("/upload-report")
+
 async def upload_report(
     image: UploadFile = File(...),
     lat: str = Form(...),
@@ -51,6 +51,6 @@ async def upload_report(
 
     return new_case
 
-@app.get("/reports")
+@app.post("/upload-report")
 def get_reports():
     return load_reports()

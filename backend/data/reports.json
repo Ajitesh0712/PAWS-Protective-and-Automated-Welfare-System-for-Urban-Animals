@@ -58,5 +58,35 @@
     "lng": "77.410",
     "status": "Pending",
     "image": "uploads/56094d13-263f-4981-a43d-68a3d165993f.jpg"
+  },
+  {
+    "id": 7,
+    "animal": "Dog",
+    "severity": "Critical",
+    "score": 90,
+    "lat": "28.4782171",
+    "lng": "77.5045989",
+    "status": "Pending",
+    "image": "uploads/26517fd0-fb40-469f-ac75-60a04b8f0321.jpg"
+  },
+  {
+    "id": 8,
+    "animal": "Unknown",
+    "severity": "Moderate",
+    "score": 47,
+    "lat": "28.4782171",
+    "lng": "77.5045989",
+    "status": "Pending",
+    "image": "uploads/3abe48d8-0266-4d94-ae55-c1239bf7e9e8.jpg"
+  },
+  {
+    "id": 9,
+    "animal": "Dog",
+    "severity": "Critical",
+    "score": 90,
+    "lat": "28.4782171",
+    "lng": "77.5045989",
+    "status": "Pending",
+    "image": "uploads/fe9a18d5-c4e3-4666-933e-9c2ba5d9bd72.jpg"
   }
 ]
