@@ -33,10 +33,10 @@ export default function Home() {
       id: 3,
       username: "PetCareNoida",
       avatar: "🐾",
-      text: "Looking for a forever home for this sweet kitten. She's about 3 months old, fully vaccinated, and very friendly. DM if interested! #adoption #kitten",
+      text: "Looking for a forever home for this sweet pug puppy. She's about 3 months old, fully vaccinated, and very friendly. DM if interested! #adoption #kitten",
       image: "https://images.unsplash.com/photo-1517849845537-4d257902454a?w=600&h=400&fit=crop",
       location: "Noida",
-      tags: ["#adoption", "#kitten"],
+      tags: ["#adoption", "#puppy"],
       upvotes: 89,
       comments: 23
     },
