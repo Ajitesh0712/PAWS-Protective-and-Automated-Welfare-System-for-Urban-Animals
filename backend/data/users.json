@@ -6,5 +6,13 @@
     "role": "citizen",
     "name": "Ajitesh",
     "created_at": "2026-01-14T01:07:53.199323"
+  },
+  {
+    "id": 2,
+    "email": "ja@gmail.com",
+    "password": "Hello123",
+    "role": "partner",
+    "name": "Jai Ho",
+    "created_at": "2026-01-14T01:15:31.237917"
   }
 ]

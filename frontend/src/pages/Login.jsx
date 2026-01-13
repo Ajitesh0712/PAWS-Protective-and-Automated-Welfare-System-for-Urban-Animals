@@ -106,12 +106,15 @@ export default function Login() {
 
       const data = await response.json();
       
+      let userRole = role;
+      
       // Store authentication info in localStorage
       if (isLogin && data.success) {
         localStorage.setItem("isAuthenticated", "true");
         localStorage.setItem("userRole", data.role);
         localStorage.setItem("userId", data.id.toString());
         localStorage.setItem("userEmail", formData.email);
+        userRole = data.role;
       } else if (!isLogin && data.success) {
         // After registration, automatically log in
         const loginFormData = new FormData();
@@ -130,13 +133,19 @@ export default function Login() {
           localStorage.setItem("userRole", loginData.role);
           localStorage.setItem("userId", loginData.id.toString());
           localStorage.setItem("userEmail", formData.email);
+          userRole = loginData.role;
         }
       }
       
-      // On success, redirect to home page
+      // Role-based redirection
       const welcomeName = userType === "ngo" ? formData.organizationName || "NGO" : formData.individualName || "User";
       alert(`✅ ${isLogin ? "Login" : "Registration"} successful! Welcome ${welcomeName}!`);
-      navigate("/");
+      
+      if (userRole === "partner") {
+        navigate("/ngo-dashboard");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       console.error("Authentication error:", err);
       setError(err.message || `Failed to ${isLogin ? "login" : "register"}. Please try again.`);

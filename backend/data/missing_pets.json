@@ -19,5 +19,19 @@
     "location": "noida",
     "animal_type": "Unknown",
     "created_at": "2026-01-14T00:56:01.207111"
+  },
+  {
+    "id": 4,
+    "image_path": "uploads/7b165aa1-04d6-4b32-9e5a-1fb5d1efee67.png",
+    "location": "sector - 116",
+    "animal_type": "Cow",
+    "created_at": "2026-01-14T01:26:52.406581"
+  },
+  {
+    "id": 5,
+    "image_path": "uploads/33062eb3-2040-486e-9db9-145cd0d050cd.png",
+    "location": "Sec - 18",
+    "animal_type": "Dog",
+    "created_at": "2026-01-14T01:32:51.670999"
   }
 ]

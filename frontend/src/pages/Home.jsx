@@ -1,10 +1,31 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./home.css";
 
 export default function Home() {
   const navigate = useNavigate();
   const [postText, setPostText] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+  const [userRole, setUserRole] = useState(null);
+
+  useEffect(() => {
+    const authStatus = localStorage.getItem("isAuthenticated");
+    const role = localStorage.getItem("userRole");
+    setIsLoggedIn(authStatus === "true");
+    setUserRole(role);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userEmail");
+    setIsLoggedIn(false);
+    setUserRole(null);
+    setShowProfileDropdown(false);
+    navigate("/");
+  };
 
   // Dummy community posts data
   const communityPosts = [
@@ -90,7 +111,38 @@ export default function Home() {
           <span onClick={() => navigate("/missing")}>Missing Pets</span>
           <span onClick={() => navigate("/partners")}>NGOs & Vets</span>
           <span onClick={() => navigate("/about")}>About</span>
-          <button className="login" onClick={() => navigate("/login")}>Login</button>
+          {isLoggedIn ? (
+            <div className="profile-container">
+              <button 
+                className="profile-icon" 
+                onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                onBlur={() => setTimeout(() => setShowProfileDropdown(false), 200)}
+              >
+                👤
+              </button>
+              {showProfileDropdown && (
+                <div className="profile-dropdown">
+                  <button 
+                    className="dropdown-item"
+                    onClick={() => {
+                      setShowProfileDropdown(false);
+                      alert("My Account feature coming soon!");
+                    }}
+                  >
+                    My Account
+                  </button>
+                  <button 
+                    className="dropdown-item"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <button className="login" onClick={() => navigate("/login")}>Login</button>
+          )}
         </div>
       </header>
 
