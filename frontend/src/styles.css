@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to right, #fff8ee, #f6efe6);
+}
+
+/* NAVBAR */
+.nav {
+  background: #fff4e6;
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(120, 72, 40, 0.08);
+}
+
+.nav h2 {
+  color: #6f3f1d;
+}
+
+.nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  color: #8a5a3a;
+}
+
+.nav a:hover {
+  color: #4e2a14;
+}
+
+/* LAYOUT */
+.container {
+  padding: 60px;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  color: #6f3f1d;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #7a5a44;
+  max-width: 600px;
+  margin: auto;
+}
+
+/* BUTTONS */
+button {
+  background: linear-gradient(135deg, #8b5e3c, #6f3f1d);
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 40px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 25px;
+  box-shadow: 0 6px 15px rgba(111, 63, 29, 0.3);
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(111, 63, 29, 0.4);
+}
+
+/* CARDS */
+.card {
+  background: #fffaf3;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(120, 72, 40, 0.08);
+  margin-bottom: 25px;
+}
+
+/* INPUT */
+input[type="file"] {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #d8c1a8;
+  background: #fffaf3;
+}

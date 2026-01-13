@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@500&family=Inter:wght@600&family=Open+Sans:wght@400&display=swap');
+
+.home {
+  background: #fdf7ee;
+  min-height: 100vh;
+}
+
+/* BRAND */
+.brand {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+
+/* NAV BAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 60px;
+  align-items: center;
+  background: #f2d1a8;
+  box-shadow: 0 3px 15px rgba(120, 72, 40, 0.15);
+}
+
+.logo {
+  font-size: 22px;
+  color: #6f3f1d;
+}
+
+/* MENU TABS */
+.navlinks {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.navlinks span {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: #8a5a3a;
+  cursor: pointer;
+}
+
+.navlinks span:hover {
+  color: #4e2a14;
+}
+
+.login {
+  background: #7b4a2a;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 40px 20px 20px;
+}
+
+.hero h1 {
+  font-size: 64px;
+  color: #6f3f1d;
+}
+
+.hero p {
+  font-family: "Open Sans", sans-serif;
+  color: #8a5a3a;
+}
+
+/* CAROUSEL */
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.carousel-window {
+  width: 360px;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+
+.carousel-card {
+  min-width: 100%;
+  background: #fffaf3;
+  border-radius: 25px;
+  padding: 15px;
+  box-shadow: 0 10px 30px rgba(120, 72, 40, 0.15);
+  text-align: center;
+}
+
+.carousel-card img {
+  width: 100%;
+  border-radius: 20px;
+  height: 220px;
+  object-fit: cover;
+}
+
+.carousel-card h3 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  color: #6f3f1d;
+  margin-top: 15px;
+}
+
+.arrow {
+  background: none;
+  border: none;
+  font-size: 40px;
+  color: #6f3f1d;
+  cursor: pointer;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 20px;
+  padding: 25px 0;
+  background: #f2d1a8;
+  text-align: center;
+}
+
+.footer p {
+  font-family: "Open Sans", sans-serif;
+  color: #6f3f1d;
+}
+
+.partner {
+  margin-top: 15px;
+  background: linear-gradient(135deg, #7b4a2a, #5a321a);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+}
