@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "animal": "Unknown",
+    "severity": "Low",
+    "score": 24,
+    "lat": "28.498",
+    "lng": "77.410",
+    "status": "Pending",
+    "image": "uploads/838d9706-e17b-4006-b27e-b45d2aa54636.jpg"
+  },
+  {
+    "id": 2,
+    "animal": "Dog",
+    "severity": "Low",
+    "score": 24,
+    "lat": "28.498",
+    "lng": "77.410",
+    "status": "Pending",
+    "image": "uploads/162e2517-5eb1-4968-95ef-4e7c25c5d275.jpg"
+  },
+  {
+    "id": 3,
+    "animal": "Cat",
+    "severity": "Low",
+    "score": 2,
+    "lat": "28.498",
+    "lng": "77.410",
+    "status": "Pending",
+    "image": "uploads/92848d8a-1ce9-4be0-9d9a-52acf02e9e4c.jpg"
+  },
+  {
+    "id": 4,
+    "animal": "Dog",
+    "severity": "Critical",
+    "score": 90,
+    "lat": "28.498",
+    "lng": "77.410",
+    "status": "Pending",
+    "image": "uploads/78dc8835-d363-4cc4-940f-c64672345dd3.jpg"
+  },
+  {
+    "id": 5,
+    "animal": "Unknown",
+    "severity": "Moderate",
+    "score": 47,
+    "lat": "28.498",
+    "lng": "77.410",
+    "status": "Pending",
+    "image": "uploads/fe330def-0da9-40d7-8155-b85405dbe281.jpg"
+  },
+  {
+    "id": 6,
+    "animal": "Cat",
+    "severity": "Low",
+    "score": 26,
+    "lat": "28.498",
+    "lng": "77.410",
+    "status": "Pending",
+    "image": "uploads/56094d13-263f-4981-a43d-68a3d165993f.jpg"
+  }
+]
