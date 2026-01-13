@@ -38,7 +38,7 @@ export default function Home() {
 
         <div className="navlinks">
           <span onClick={() => navigate("/report")}>Report Animal</span>
-          <span>Missing Pets</span>
+          <span onClick={() => navigate("/missing")}>Missing Pets</span>
           <span>Rescue Map</span>
           <span>Volunteer</span>
           <button className="login" onClick={() => navigate("/login")}>Login</button>
