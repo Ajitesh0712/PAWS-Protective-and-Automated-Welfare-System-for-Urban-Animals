@@ -1,9 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import UploadForm from "../components/UploadForm";
 import "./Report.css";
 
 export default function Report() {
+  const navigate = useNavigate();
+  
   return (
     <div className="report-page">
+      <button className="back-home-btn" onClick={() => navigate("/")}>
+        ← Back to Home
+      </button>
       <div className="report-header">
         <h1>🚑 Report Injured Animal</h1>
         <p className="report-description">

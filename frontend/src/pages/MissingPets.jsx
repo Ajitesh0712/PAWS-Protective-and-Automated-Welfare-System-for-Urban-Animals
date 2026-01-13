@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./missingPets.css";
 
 export default function MissingPets() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     image: null,
     location: ""
@@ -77,6 +79,9 @@ export default function MissingPets() {
 
   return (
     <div className="missing-pets-page">
+      <button className="back-home-btn" onClick={() => navigate("/")}>
+        ← Back to Home
+      </button>
       {/* Page Header */}
       <header className="missing-header">
         <h1 className="missing-title">🐾 Missing Pets</h1>

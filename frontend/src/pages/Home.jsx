@@ -1,36 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./home.css";
 
 export default function Home() {
   const navigate = useNavigate();
-  const [index, setIndex] = useState(0);
   const [postText, setPostText] = useState("");
-
-  const cards = [
-    {
-      img: "https://i.pinimg.com/736x/40/ab/6c/40ab6c52018bb2289db992ca9a9214c7.jpg",
-      text: "Recent Rescue: Max"
-    },
-    {
-      img: "https://i.pinimg.com/originals/6b/39/42/6b394283a124f7daeb3bf40002c886df.jpg",
-      text: "Urgent Help Needed — Noida Sector 128"
-    },
-    {
-      img: "https://i.pinimg.com/1200x/5c/51/53/5c515359c530c316a4d9ee8abe453e64.jpg",
-      text: "Successful Reunification"
-    }
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((i) => (i + 1) % cards.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const next = () => setIndex((i) => (i + 1) % cards.length);
-  const prev = () => setIndex((i) => (i - 1 + cards.length) % cards.length);
 
   // Dummy community posts data
   const communityPosts = [
@@ -114,42 +88,99 @@ export default function Home() {
         <div className="navlinks">
           <span onClick={() => navigate("/report")}>Report Animal</span>
           <span onClick={() => navigate("/missing")}>Missing Pets</span>
-          <span>Rescue Map</span>
-          <span>Volunteer</span>
+          <span onClick={() => navigate("/partners")}>NGOs & Vets</span>
+          <span onClick={() => navigate("/about")}>About</span>
           <button className="login" onClick={() => navigate("/login")}>Login</button>
         </div>
       </header>
 
-      <section className="hero">
-        <h1 className="brand">PAWS</h1>
-        <p>Protective and Automated Welfare System</p>
+      {/* Quick Action Strip */}
+      <section className="quick-actions-section">
+        <div className="quick-actions-container">
+          <div className="quick-action-card" onClick={() => navigate("/report")}>
+            <div className="action-icon">🚑</div>
+            <h3 className="action-title">Report Injured Animal</h3>
+            <p className="action-description">Report an injured or distressed animal</p>
+          </div>
+          <div className="quick-action-card" onClick={() => navigate("/missing")}>
+            <div className="action-icon">🐾</div>
+            <h3 className="action-title">Report Missing Pet</h3>
+            <p className="action-description">Help reunite lost pets with families</p>
+          </div>
+          <div className="quick-action-card" onClick={() => navigate("/partners")}>
+            <div className="action-icon">🤝</div>
+            <h3 className="action-title">View NGOs & Vets</h3>
+            <p className="action-description">Find trusted organizations nearby</p>
+          </div>
+        </div>
       </section>
 
-      <section className="carousel">
-        <button className="arrow" onClick={prev}>‹</button>
-
-        <div className="carousel-window">
-          <div
-            className="carousel-track"
-            style={{ transform: `translateX(-${index * 100}%)` }}
-          >
-            {cards.map((c, i) => (
-              <div className="carousel-card" key={i}>
-                <img src={c.img} alt="animal" />
-                <h3>{c.text}</h3>
+      {/* NGO & Vet Highlight Section */}
+      <section className="partners-highlight-section">
+        <div className="partners-highlight-container">
+          <div className="highlight-header">
+            <h2 className="highlight-title">Featured Partners</h2>
+            <button className="view-all-btn" onClick={() => navigate("/partners")}>
+              View All Partners →
+            </button>
+          </div>
+          <div className="highlight-grid">
+            {[
+              {
+                id: 1,
+                name: "Animal Welfare Society",
+                type: "ngo",
+                location: "Noida, Sector 62",
+                available: true,
+                hours: "24×7"
+              },
+              {
+                id: 2,
+                name: "Dr. Priya Sharma",
+                type: "vet",
+                location: "Delhi NCR",
+                available: true,
+                hours: "Mon-Sat: 9 AM - 8 PM"
+              },
+              {
+                id: 3,
+                name: "Paws & Claws Rescue",
+                type: "ngo",
+                location: "Noida, Sector 18",
+                available: true,
+                hours: "24×7"
+              },
+              {
+                id: 4,
+                name: "Dr. Rajesh Kumar",
+                type: "vet",
+                location: "Noida, Sector 50",
+                available: true,
+                hours: "24×7"
+              }
+            ].map((partner) => (
+              <div key={partner.id} className="highlight-card">
+                <div className="highlight-card-header">
+                  <span className="highlight-type-badge">
+                    {partner.type === "ngo" ? "NGO" : "Veterinarian"}
+                  </span>
+                  {partner.available && (
+                    <span className="highlight-availability">{partner.hours}</span>
+                  )}
+                </div>
+                <h3 className="highlight-name">{partner.name}</h3>
+                <p className="highlight-location">📍 {partner.location}</p>
               </div>
             ))}
           </div>
         </div>
-
-        <button className="arrow" onClick={next}>›</button>
       </section>
 
       {/* Community Section */}
       <section className="community-section">
         <div className="community-header">
           <h2 className="community-title">🐾 Community</h2>
-          <p className="community-subtitle">Stories, sightings, and updates from people around you</p>
+          <p className="community-subtitle">Updates, rescues, sightings, and stories</p>
         </div>
 
         <div className="community-container">
@@ -213,9 +244,13 @@ export default function Home() {
 
       <footer className="footer">
         <p>Are you an NGO or Veterinarian?</p>
-        <button className="partner" onClick={() => navigate("/dashboard")}>
+        <button className="partner" onClick={() => navigate("/ngo-dashboard")}>
           Partner Login
         </button>
+        <div className="footer-links">
+          <span onClick={() => navigate("/partners")}>View NGOs & Vets</span>
+          <span onClick={() => navigate("/about")}>About PAWS</span>
+        </div>
       </footer>
     </div>
   );

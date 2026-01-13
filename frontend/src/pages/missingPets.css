@@ -4,12 +4,38 @@
   min-height: 100vh;
   background: linear-gradient(to right, #fff8ee, #f6efe6);
   padding-bottom: 60px;
+  position: relative;
+}
+
+.back-home-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: transparent;
+  border: 2px solid #8b5e3c;
+  color: #8b5e3c;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  box-shadow: none;
+  margin: 0;
+  z-index: 10;
+}
+
+.back-home-btn:hover {
+  background: #8b5e3c;
+  color: #fff;
+  transform: translateX(-2px);
 }
 
 /* Header Section */
 .missing-header {
   text-align: center;
-  padding: 60px 20px 50px;
+  padding: 60px 20px 40px;
   background: linear-gradient(135deg, #f2d1a8, #e8c49a);
   box-shadow: 0 4px 15px rgba(120, 72, 40, 0.1);
 }
@@ -27,9 +53,10 @@
   font-size: 18px;
   color: #8a5a3a;
   margin: 0;
-  max-width: 600px;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.6;
 }
 
 /* Pets Grid Section */
@@ -253,6 +280,13 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .back-home-btn {
+    top: 15px;
+    left: 15px;
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
   .missing-title {
     font-size: 36px;
   }
