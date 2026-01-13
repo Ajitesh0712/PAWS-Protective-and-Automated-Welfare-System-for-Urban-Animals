@@ -13,6 +13,9 @@ export default function UploadForm() {
     contactPhone: "",
     contactEmail: ""
   });
+  const [animal, setAnimal] = useState("");
+  const [severity, setSeverity] = useState("");
+  const [description, setDescription] = useState("");
   const [location, setLocation] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -26,8 +29,34 @@ export default function UploadForm() {
       [name]: value
     }));
   };
+  const submitReport = async (file) => {
+    if (!location) {
+      setError("Location not available yet");
+      //return;
+    }
 
-  const handleImageChange = (e) => {
+    const data = new FormData();
+    data.append("image", file);
+    data.append("lat", location.lat);
+    data.append("lng", location.lng);
+
+    try {
+      const res = await fetch("http://127.0.0.1:8000/upload-report", {
+        method: "POST",
+        body: data
+      });
+
+      const ai = await res.json();
+      console.log("AI response:", ai);
+      
+
+    } catch (err) {
+      setError("AI analysis failed");
+    }
+  };
+
+
+  const handleImageChange = async(e) => {
     const file = e.target.files[0];
     if (file) {
       setFormData(prev => ({ ...prev, image: file }));
@@ -37,7 +66,9 @@ export default function UploadForm() {
       };
       reader.readAsDataURL(file);
     }
+    await submitReport(file);
   };
+
 
   const validateForm = () => {
     if (!formData.image) {
@@ -253,7 +284,7 @@ export default function UploadForm() {
                 value={formData.contactPhone}
                 onChange={handleInputChange}
                 className="form-input"
-                placeholder="+1 (555) 123-4567"
+                placeholder="+91 xxxxxxxxxx"
               />
             </div>
 
