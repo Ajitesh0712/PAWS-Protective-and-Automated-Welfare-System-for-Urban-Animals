@@ -1,37 +1,51 @@
-# Python cache
+# =========================
+# Python
+# =========================
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
 *.pyd
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
 
-# Virtual environment
+# =========================
+# Virtual Environments
+# =========================
 venv/
-env/
+.env/
+.env.local/
+.env.production
 .venv/
 
-# Environment secrets
-.env
-
-# Database files
-data/
-*.sqlite
-*.db
-
-# Uploaded animal images
-uploads/
-
-# YOLO weights (too large for GitHub)
-yolov8n.pt
-
-# Logs
+# =========================
+# FastAPI / Uvicorn
+# =========================
 *.log
+uvicorn.log
 
-# OS files
+# =========================
+# AI / ML artifacts
+# =========================
+models/
+*.h5
+*.pt
+*.onnx
+*.pkl
+
+# =========================
+# OS / IDE
+# =========================
 .DS_Store
 Thumbs.db
-
-# VS Code
 .vscode/
-
-# PyCharm
 .idea/
+
+# =========================
+# Test / Cache
+# =========================
+.pytest_cache/
+.mypy_cache/
+.coverage
