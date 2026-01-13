@@ -174,5 +174,38 @@
     "lng": "77.36280368784116",
     "status": "Pending",
     "image": "uploads/c356bd41-8beb-4241-a4ef-4e95e3c21490.png"
+  },
+  {
+    "id": 18,
+    "animal": "Unknown",
+    "severity": "Moderate",
+    "score": 47,
+    "description": "Unknown detected with Moderate injury. AI score: 47. Immediate attention required.",
+    "lat": "28.55045365425264",
+    "lng": "77.36284998318233",
+    "status": "Pending",
+    "image": "uploads/6be48bf9-3777-43b0-b354-57f7d0558bdd.png"
+  },
+  {
+    "id": 19,
+    "animal": "Unknown",
+    "severity": "Moderate",
+    "score": 47,
+    "description": "Unknown detected with Moderate injury. AI score: 47. Immediate attention required.",
+    "lat": "28.55023212787215",
+    "lng": "77.36282271923791",
+    "status": "Pending",
+    "image": "uploads/3540e422-640a-4078-bc7e-54b9b5f4376c.png"
+  },
+  {
+    "id": 20,
+    "animal": "Unknown",
+    "severity": "Moderate",
+    "score": 47,
+    "description": "Unknown detected with Moderate injury. AI score: 47. Immediate attention required.",
+    "lat": "28.55023212787215",
+    "lng": "77.36282271923791",
+    "status": "Pending",
+    "image": "uploads/e1eec4fd-7e62-4fca-9df7-2713438af81d.png"
   }
 ]
