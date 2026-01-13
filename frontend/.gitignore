@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# build outputs
+dist/
+build/
+
+# caches
+.cache/
+.eslintcache
+
+# environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env*.local
+
+# OS / editor
+.DS_Store

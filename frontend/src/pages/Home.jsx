@@ -41,7 +41,7 @@ export default function Home() {
           <span>Missing Pets</span>
           <span>Rescue Map</span>
           <span>Volunteer</span>
-          <button className="login">Login</button>
+          <button className="login" onClick={() => navigate("/login")}>Login</button>
         </div>
       </header>
 
