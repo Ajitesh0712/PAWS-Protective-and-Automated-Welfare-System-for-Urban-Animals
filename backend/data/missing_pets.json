@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "image_path": "uploads/5971d585-8180-46c5-b7b9-c2ea5247cebf.png",
+    "location": "delhi",
+    "animal_type": "Dog",
+    "created_at": "2026-01-14T00:21:10.900323"
+  },
+  {
+    "id": 2,
+    "image_path": "uploads/59f4bd2d-216f-4e88-aa46-c058f80642c0.png",
+    "location": "sec 128 noida",
+    "animal_type": "Cat",
+    "created_at": "2026-01-14T00:34:21.457178"
+  }
+]

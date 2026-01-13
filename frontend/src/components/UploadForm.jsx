@@ -19,6 +19,7 @@ export default function UploadForm() {
   const [location, setLocation] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [analyzing, setAnalyzing] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
@@ -30,35 +31,102 @@ export default function UploadForm() {
     }));
   };
   const submitReport = async (file) => {
-    if (!location) {
-      setError("Location not available yet");
-      //return;
+    if (!file) {
+      return;
     }
+
+    // Use default location if not available yet (backend requires lat/lng)
+    const defaultLat = location?.lat || "28.5355";
+    const defaultLng = location?.lng || "77.3910";
 
     const data = new FormData();
     data.append("image", file);
-    data.append("lat", location.lat);
-    data.append("lng", location.lng);
+    data.append("lat", defaultLat);
+    data.append("lng", defaultLng);
 
     try {
+      setError(""); // Clear any previous errors
+      setAnalyzing(true); // Show analyzing state
+      
+      // Verify file is attached
+      if (!file || !(file instanceof File)) {
+        throw new Error("Invalid file. Please select an image file.");
+      }
+
+      console.log("Sending request to:", "http://127.0.0.1:8000/upload-report");
+      console.log("File:", file.name, "Size:", file.size, "Type:", file.type);
+      console.log("Location:", defaultLat, defaultLng);
+
       const res = await fetch("http://127.0.0.1:8000/upload-report", {
         method: "POST",
         body: data
+        // Note: Don't set Content-Type header - browser sets it automatically with boundary for FormData
       });
+
+      console.log("Response status:", res.status, res.statusText);
+
+      if (!res.ok) {
+        let errorMessage = `Server error: ${res.status}`;
+        try {
+          const errorData = await res.json();
+          errorMessage = errorData.detail || errorData.message || errorMessage;
+        } catch (parseError) {
+          // If response is not JSON, try to get text
+          const textError = await res.text().catch(() => "");
+          errorMessage = textError || errorMessage;
+        }
+        throw new Error(errorMessage);
+      }
 
       const ai = await res.json();
       console.log("AI response:", ai);
 
+      // Validate response has required fields
+      if (!ai || typeof ai.animal === "undefined") {
+        throw new Error("Invalid response from server. Missing animal detection data.");
+      }
+
+      // Map backend severity to frontend select values
+      // Backend returns: "Low", "Moderate", "Critical"
+      // Frontend expects: "Low", "Medium", "High", "Critical"
+      let mappedSeverity = ai.severity || "";
+      if (mappedSeverity === "Moderate") {
+        mappedSeverity = "Medium"; // Map Moderate to Medium
+      } else if (mappedSeverity === "Low") {
+        mappedSeverity = "Low";
+      } else if (mappedSeverity === "Critical") {
+        mappedSeverity = "Critical";
+      }
+
       setFormData(prev => ({
         ...prev,
         animalType: ai.animal || "",
-        severity: ai.severity || "",
-        description: ai.description || `Detected ${ai.animal} with ${ai.severity} severity (score ${ai.score})`
+        severity: mappedSeverity,
+        description: ai.description || `Detected ${ai.animal} with ${ai.severity} severity (AI score: ${ai.score}). Immediate attention required.`
       }));
-      
+
+      // Clear error on success
+      setError("");
 
     } catch (err) {
-      setError("AI analysis failed");
+      console.error("AI analysis error:", err);
+      
+      // Handle different types of errors
+      let errorMessage = "AI analysis failed. ";
+      
+      if (err instanceof TypeError && err.message.includes("fetch")) {
+        errorMessage += "Cannot connect to server. Please ensure the backend is running at http://127.0.0.1:8000";
+      } else if (err instanceof TypeError) {
+        errorMessage += "Network error. Please check your connection.";
+      } else if (err.message) {
+        errorMessage = err.message;
+      } else {
+        errorMessage += "Please check your connection and try again.";
+      }
+      
+      setError(errorMessage);
+    } finally {
+      setAnalyzing(false);
     }
   };
 
@@ -72,8 +140,10 @@ export default function UploadForm() {
         setImagePreview(reader.result);
       };
       reader.readAsDataURL(file);
+      
+      // Trigger AI analysis after image is set
+      await submitReport(file);
     }
-    await submitReport(file);
   };
 
 
@@ -161,6 +231,12 @@ export default function UploadForm() {
       <div className="form-card">
         <h3>Report Injured Animal</h3>
         <p className="form-subtitle">Help us rescue animals in need by providing the following information</p>
+
+        {analyzing && (
+          <div className="alert alert-info">
+            <span>🔍</span> Analyzing image with AI... Please wait.
+          </div>
+        )}
 
         {error && (
           <div className="alert alert-error">

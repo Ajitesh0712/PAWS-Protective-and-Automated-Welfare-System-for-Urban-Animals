@@ -163,5 +163,16 @@
     "lng": "77.36286479327184",
     "status": "Pending",
     "image": "uploads/b3cbc735-ceb8-47b9-af78-92ed5117d68d.jpg"
+  },
+  {
+    "id": 17,
+    "animal": "Dog",
+    "severity": "Critical",
+    "score": 90,
+    "description": "Dog detected with Critical injury. AI score: 90. Immediate attention required.",
+    "lat": "28.550343545836157",
+    "lng": "77.36280368784116",
+    "status": "Pending",
+    "image": "uploads/c356bd41-8beb-4241-a4ef-4e95e3c21490.png"
   }
 ]

@@ -1,59 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./missingPets.css";
 
 export default function MissingPets() {
   const navigate = useNavigate();
+  const fileInputRef = useRef(null);
   const [formData, setFormData] = useState({
     image: null,
-    place: ""
+    location: ""
   });
+  const [missingPets, setMissingPets] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Dummy data for missing pets
-  const missingPets = [
-    {
-      id: 1,
-      name: "Buddy",
-      image: "https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=300&fit=crop",
-      location: "Central Park, Sector 15",
-      status: "Searching"
-    },
-    {
-      id: 2,
-      name: "Luna",
-      image: "https://images.unsplash.com/photo-1517849845537-4d257902454a?w=400&h=300&fit=crop",
-      location: "Near Metro Station, Sector 18",
-      status: "Searching"
-    },
-    {
-      id: 3,
-      name: "Max",
-      image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&h=300&fit=crop",
-      location: "Residential Area, Sector 62",
-      status: "Matched"
-    },
-    {
-      id: 4,
-      name: "Charlie",
-      image: "https://images.unsplash.com/photo-1534361960057-19889dbdf1bb?w=400&h=300&fit=crop",
-      location: "Shopping Mall, Sector 104",
-      status: "Searching"
-    },
-    {
-      id: 5,
-      name: "Bella",
-      image: "https://images.unsplash.com/photo-1517849845537-4d257902454a?w=400&h=300&fit=crop",
-      location: "Community Park, Sector 50",
-      status: "Searching"
-    },
-    {
-      id: 6,
-      name: "Rocky",
-      image: "https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=300&fit=crop",
-      location: "Near School, Sector 21",
-      status: "Matched"
-    }
-  ];
+  // Fetch missing pets from backend
+  useEffect(() => {
+    const fetchMissingPets = async () => {
+      try {
+        const res = await fetch("http://127.0.0.1:8000/missing-pets");
+        if (res.ok) {
+          const data = await res.json();
+          setMissingPets(data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch missing pets:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchMissingPets();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
@@ -78,39 +53,53 @@ export default function MissingPets() {
       return;
     }
 
-    if (!formData.place) {
-      alert("Please enter the place name");
+    if (!formData.location || formData.location.trim() === "") {
+      alert("Please enter the last seen location");
       return;
     }
 
     try {
-      // 1️⃣ Create FormData
+      // Create FormData
       const data = new FormData();
       data.append("image", formData.image);
-      data.append("place", formData.place);
+      data.append("location", formData.location.trim());
 
-      // 2️⃣ CONNECT TO BACKEND HERE 👇
-      const res = await fetch("http://127.0.0.1:8000/report-injury", {
+      // Submit to backend
+      const res = await fetch("http://127.0.0.1:8000/missing-pets", {
         method: "POST",
         body: data
       });
-      console.log(formData);
 
-      // 3️⃣ Handle response
+      if (!res.ok) {
+        throw new Error(`Server error: ${res.status}`);
+      }
+
       const result = await res.json();
       console.log("Backend response:", result);
 
-      alert("✅ Injury reported successfully");
+      alert("✅ Missing pet report submitted successfully");
 
-      // 4️⃣ Reset form
+      // Reset form
       setFormData({
         image: null,
-        place: ""
+        location: ""
       });
+      
+      // Reset file input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+
+      // Refresh the missing pets list
+      const refreshRes = await fetch("http://127.0.0.1:8000/missing-pets");
+      if (refreshRes.ok) {
+        const refreshData = await refreshRes.json();
+        setMissingPets(refreshData);
+      }
 
     } catch (error) {
-      console.error(error);
-      alert("❌ Failed to submit report");
+      console.error("Submission error:", error);
+      alert("❌ Failed to submit report. Please try again.");
     }
   };
 
@@ -128,22 +117,37 @@ export default function MissingPets() {
 
       {/* Missing Pets Grid */}
       <section className="pets-grid-section">
-        <div className="pets-grid">
-          {missingPets.map((pet) => (
-            <div key={pet.id} className="pet-card">
-              <div className="pet-image-container">
-                <img src={pet.image} alt={pet.name} className="pet-image" />
-                <span className={`status-badge ${pet.status.toLowerCase()}`}>
-                  {pet.status}
-                </span>
+        {loading ? (
+          <div className="loading-message">Loading missing pets...</div>
+        ) : missingPets.length === 0 ? (
+          <div className="no-pets-message">No missing pets reported yet.</div>
+        ) : (
+          <div className="pets-grid">
+            {missingPets.map((pet) => (
+              <div key={pet.id} className="pet-card">
+                <div className="pet-image-container">
+                  <img 
+                    src={`http://127.0.0.1:8000/${pet.image_path}`} 
+                    alt={`Missing ${pet.animal_type || 'pet'}`} 
+                    className="pet-image"
+                    onError={(e) => {
+                      e.target.src = "https://via.placeholder.com/400x300?text=No+Image";
+                    }}
+                  />
+                </div>
+                <div className="pet-info">
+                  <h3 className="pet-name">{pet.animal_type || "Unknown Animal"}</h3>
+                  <p className="pet-location">📍 {pet.location}</p>
+                  {pet.created_at && (
+                    <p className="pet-date">
+                      Reported: {new Date(pet.created_at).toLocaleDateString()}
+                    </p>
+                  )}
+                </div>
               </div>
-              <div className="pet-info">
-                <h3 className="pet-name">{pet.name}</h3>
-                <p className="pet-location">📍 {pet.location}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Report Missing Pet Form */}
@@ -165,6 +169,7 @@ export default function MissingPets() {
                 accept="image/*"
                 onChange={handleInputChange}
                 className="form-input-file"
+                ref={fileInputRef}
               />
               {formData.image && (
                 <p className="file-name">{formData.image.name}</p>
