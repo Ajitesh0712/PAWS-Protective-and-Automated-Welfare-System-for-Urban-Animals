@@ -38,6 +38,7 @@
   font-weight: 500;
   color: #8a5a3a;
   cursor: pointer;
+  line-height: 1.5;
 }
 
 .navlinks span:hover {
@@ -48,10 +49,23 @@
   background: #7b4a2a;
   color: white;
   border: none;
-  padding: 8px 20px;
+  padding: 0 20px;
   border-radius: 20px;
-  display: flex;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: inherit;
+  cursor: pointer;
+  line-height: 1.5;
+  height: auto;
+  vertical-align: middle;
+  align-self: center;
+  margin: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  box-shadow: none;
 }
 
 /* Quick Actions Section */
