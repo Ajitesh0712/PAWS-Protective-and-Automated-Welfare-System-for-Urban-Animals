@@ -48,6 +48,13 @@ export default function UploadForm() {
 
       const ai = await res.json();
       console.log("AI response:", ai);
+
+      setFormData(prev => ({
+        ...prev,
+        animalType: ai.animal || "",
+        severity: ai.severity || "",
+        description: ai.description || `Detected ${ai.animal} with ${ai.severity} severity (score ${ai.score})`
+      }));
       
 
     } catch (err) {

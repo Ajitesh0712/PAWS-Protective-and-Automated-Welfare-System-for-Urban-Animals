@@ -88,5 +88,80 @@
     "lng": "77.5045989",
     "status": "Pending",
     "image": "uploads/fe9a18d5-c4e3-4666-933e-9c2ba5d9bd72.jpg"
+  },
+  {
+    "id": 10,
+    "animal": "Dog",
+    "severity": "Critical",
+    "score": 90,
+    "lat": "28.5355",
+    "lng": "77.391",
+    "status": "Pending",
+    "image": "uploads/c4e4a6b6-ce27-4966-8c23-989a0f85a20e.jpg"
+  },
+  {
+    "id": 11,
+    "animal": "Cat",
+    "severity": "Low",
+    "score": 26,
+    "lat": "28.550351175828723",
+    "lng": "77.36286236959597",
+    "status": "Pending",
+    "image": "uploads/7eebfc05-f3b7-42e9-8e1c-1eabd57d249b.jpg"
+  },
+  {
+    "id": 12,
+    "animal": "Dog",
+    "severity": "Critical",
+    "score": 90,
+    "description": "Dog detected with Critical injury. AI score: 90. Immediate attention required.",
+    "lat": "28.550360292321635",
+    "lng": "77.36286479327184",
+    "status": "Pending",
+    "image": "uploads/fe123856-88b9-4af8-951f-008e06c22bf4.jpg"
+  },
+  {
+    "id": 13,
+    "animal": "Cat",
+    "severity": "Low",
+    "score": 26,
+    "description": "Cat detected with Low injury. AI score: 26. Immediate attention required.",
+    "lat": "28.550360292321635",
+    "lng": "77.36286479327184",
+    "status": "Pending",
+    "image": "uploads/5ec48f29-2fc9-4909-80aa-ca3afb0c3147.jpg"
+  },
+  {
+    "id": 14,
+    "animal": "Unknown",
+    "severity": "Moderate",
+    "score": 47,
+    "description": "Unknown detected with Moderate injury. AI score: 47. Immediate attention required.",
+    "lat": "28.550360292321635",
+    "lng": "77.36286479327184",
+    "status": "Pending",
+    "image": "uploads/7b0f32ea-6850-4f30-9911-052b97477d0e.jpg"
+  },
+  {
+    "id": 15,
+    "animal": "Dog",
+    "severity": "Critical",
+    "score": 90,
+    "description": "Dog detected with Critical injury. AI score: 90. Immediate attention required.",
+    "lat": "28.550360292321635",
+    "lng": "77.36286479327184",
+    "status": "Pending",
+    "image": "uploads/5676c54a-84d9-4df7-a184-a889bb0f8032.jpg"
+  },
+  {
+    "id": 16,
+    "animal": "Dog",
+    "severity": "Moderate",
+    "score": 42,
+    "description": "Dog detected with Moderate injury. AI score: 42. Immediate attention required.",
+    "lat": "28.550360292321635",
+    "lng": "77.36286479327184",
+    "status": "Pending",
+    "image": "uploads/b3cbc735-ceb8-47b9-af78-92ed5117d68d.jpg"
   }
 ]
