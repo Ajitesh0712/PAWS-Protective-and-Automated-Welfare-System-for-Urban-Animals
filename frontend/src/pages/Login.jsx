@@ -7,7 +7,8 @@ export default function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    organizationName: "" // Only for NGO
+    organizationName: "", // Only for NGO
+    individualName: "" // Only for User
   });
   const [isLogin, setIsLogin] = useState(true); // Toggle between login and signup
   const [error, setError] = useState("");
@@ -44,6 +45,10 @@ export default function Login() {
       setError("Please enter your organization name");
       return false;
     }
+    if (!isLogin && userType === "user" && !formData.individualName.trim()) {
+      setError("Please enter your name");
+      return false;
+    }
     return true;
   };
 
@@ -68,7 +73,7 @@ export default function Login() {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       // On success, redirect to dashboard or home
-      alert(`✅ ${isLogin ? "Login" : "Registration"} successful! Welcome ${userType === "ngo" ? formData.organizationName || "NGO" : "User"}!`);
+      alert(`✅ ${isLogin ? "Login" : "Registration"} successful! Welcome ${userType === "ngo" ? formData.organizationName || "NGO" : formData.individualName || "User"}!`);
       navigate("/dashboard");
     } catch (err) {
       setError(err.response?.data?.message || `Failed to ${isLogin ? "login" : "register"}. Please try again.`);
@@ -84,7 +89,10 @@ export default function Login() {
           ← Back to Home
         </button>
         <div className="login-header">
-          <h1 className="brand">🐾 PAWS</h1>
+          <div className="brand-header">
+            <img src="/icon.png" alt="PAWS Logo" className="logo-icon" />
+            <h1 className="brand">PAWS</h1>
+          </div>
           <p className="login-subtitle">
             {isLogin ? "Welcome back!" : "Join our mission to help animals"}
           </p>
@@ -152,6 +160,22 @@ export default function Login() {
                   onChange={handleInputChange}
                   className="form-input"
                   placeholder="Enter your organization name"
+                />
+              </div>
+            )}
+
+            {!isLogin && userType === "user" && (
+              <div className="form-group">
+                <label className="form-label">
+                  Your Name <span className="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="individualName"
+                  value={formData.individualName}
+                  onChange={handleInputChange}
+                  className="form-input"
+                  placeholder="Enter your full name"
                 />
               </div>
             )}

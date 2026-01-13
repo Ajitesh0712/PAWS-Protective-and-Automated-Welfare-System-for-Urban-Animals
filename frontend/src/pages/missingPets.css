@@ -2,7 +2,7 @@
 
 .missing-pets-page {
   min-height: 100vh;
-  background: #fdf7ee;
+  background: linear-gradient(to right, #fff8ee, #f6efe6);
   padding-bottom: 60px;
 }
 
@@ -37,6 +37,12 @@
   padding: 50px 40px;
   max-width: 1400px;
   margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .pets-grid-section {
+    padding: 30px 20px;
+  }
 }
 
 .pets-grid {
@@ -253,10 +259,6 @@
 
   .missing-subtitle {
     font-size: 16px;
-  }
-
-  .pets-grid-section {
-    padding: 30px 20px;
   }
 
   .pets-grid {
