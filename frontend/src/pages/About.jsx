@@ -6,7 +6,7 @@ export default function About() {
       <header className="about-header">
         <h1 className="about-title">🐾 About PAWS</h1>
         <p className="about-subtitle">
-          Predictive and Automated Welfare System for Urban Animals
+          Protective and Automated Welfare System for Urban Animals
         </p>
       </header>
 
