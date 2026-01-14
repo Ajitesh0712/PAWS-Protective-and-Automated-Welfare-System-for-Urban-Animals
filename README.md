@@ -1,4 +1,4 @@
-# 🐾 PAWS - Predictive and Automated Welfare System for Urban Animals
+# 🐾 PAWS - Protective and Automated Welfare System for Urban Animals
 
 PAWS is a comprehensive platform designed to help citizens report injured animals, find missing pets, and connect with NGOs and veterinarians for animal welfare services.
 
@@ -49,7 +49,7 @@ PAWS is a comprehensive platform designed to help citizens report injured animal
 ## 📁 Project Structure
 
 ```
-PAWS-Predictive-and-Automated-Welfare-System-for-Urban-Animals/
+PAWS-Protective-and-Automated-Welfare-System-for-Urban-Animals/
 ├── backend/
 │   ├── main.py                 # FastAPI application entry point
 │   ├── auth.py                 # Authentication utilities
