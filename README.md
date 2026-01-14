@@ -50,104 +50,167 @@ PAWS is a comprehensive platform designed to help citizens report injured animal
 
 ```
 PAWS-Protective-and-Automated-Welfare-System-for-Urban-Animals/
-├── backend/
-│   ├── main.py                 # FastAPI application entry point
-│   ├── auth.py                 # Authentication utilities
-│   ├── ai_engine.py           # AI image analysis (YOLO + injury detection)
-│   ├── database.py            # JSON-based data storage functions
-│   ├── models.py              # SQLAlchemy models
-│   ├── routes/
-│   │   ├── auth_routes.py     # Authentication endpoints
-│   │   └── missing_pets.py    # Missing pets endpoints
-│   ├── data/                  # JSON data storage
-│   │   ├── users.json         # User accounts
-│   │   ├── reports.json       # Injury reports
-│   │   ├── missing_pets.json  # Missing pet reports
-│   │   └── injury_reports.json
-│   ├── uploads/               # Uploaded images
-│   └── requirements.txt        # Python dependencies
 │
-└── frontend/
-    ├── src/
-    │   ├── App.js             # Main app component with routing
-    │   ├── components/
-    │   │   ├── Navbar.jsx     # Navigation component
-    │   │   ├── UploadForm.jsx # Injury report form
-    │   │   └── MapPicker.jsx  # Location picker
-    │   ├── pages/
-    │   │   ├── Home.jsx       # Home page with community feed
-    │   │   ├── Login.jsx      # Authentication page
-    │   │   ├── Report.jsx     # Report injured animal page
-    │   │   ├── MissingPets.jsx # Missing pets page
-    │   │   ├── NGODashboard.jsx # NGO dashboard
-    │   │   ├── Partners.jsx   # NGOs & Vets directory
-    │   │   └── About.jsx      # About page
-    │   └── api.js             # API configuration
-    └── package.json           # Node.js dependencies
+├── backend/
+│   ├── __pycache__/
+│   │
+│   ├── data/
+│   │   ├── injury_reports.json
+│   │   ├── missing_pets.json
+│   │   ├── paws.db
+│   │   ├── reports.json
+│   │   └── users.json
+│   │
+│   ├── routes/
+│   │   ├── __pycache__/
+│   │   ├── auth_routes.py
+│   │   └── missing_pets.py
+│   │
+│   ├── uploads/
+│   │
+│   ├── venv/
+│   │
+│   ├── .gitignore
+│   ├── ai_engine.py
+│   ├── auth.py
+│   ├── database.py
+│   ├── main.py
+│   ├── models.py
+│   ├── requirements.txt
+│   └── yolov8n.pt
+│
+├── frontend/
+│   ├── node_modules/
+│   │
+│   ├── public/
+│   │
+│   ├── src/
+│   │   ├── components/
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── about.css
+│   │   │   ├── About.jsx
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── home.css
+│   │   │   ├── Home.jsx
+│   │   │   ├── Login.css
+│   │   │   ├── Login.jsx
+│   │   │   ├── missingPets.css
+│   │   │   ├── MissingPets.jsx
+│   │   │   ├── ngoDashboard.css
+│   │   │   ├── NGODashboard.jsx
+│   │   │   ├── NGOSettings.css
+│   │   │   ├── NGOSettings.jsx
+│   │   │   ├── partners.css
+│   │   │   ├── Partners.jsx
+│   │   │   ├── Report.css
+│   │   │   ├── Report.jsx
+│   │   │   ├── UserSettings.css
+│   │   │   └── UserSettings.jsx
+│   │   │
+│   │   ├── api.js
+│   │   ├── App.js
+│   │   ├── index.js
+│   │   └── styles.css
+│   │
+│   ├── .gitignore
+│   ├── package-lock.json
+│   ├── package.json
+│   └── icon.png
+│
+└── README.md
+
 ```
 
 ## 🚀 Setup Instructions
 
 ### Prerequisites
-- Python 3.8 - 3.12.1
+- Python 3.11 - 3.12.1
 - Node.js 16 or higher
 - npm or yarn
 
-### Backend Setup
 
-**ENSURE SUPPORTED PYTHON VERSION IS INSTALLED** if not then download from https://www.python.org/ftp/python/3.12.1/python-3.12.1-amd64.exe
+# 🔧 Backend Setup (PAWS)
 
-1. **Navigate to backend directory**
-   ```bash
-   cd backend
-   ```
+## Ensure Supported Python Version
+Python **3.11 or 3.12** is REQUIRED.
 
-2. **Create virtual environment (recommended)**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
+If not installed, download from:
+https://www.python.org/ftp/python/3.12.1/python-3.12.1-amd64.exe
 
-3. **Install Python dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-   
-   If `requirements.txt` is empty, install manually:
-   ```bash
-   pip install fastapi uvicorn python-multipart passlib python-jose[cryptography] opencv-python ultralytics numpy
-   ```
+⚠️ Do NOT use Python 3.13 or 3.14 (YOLO and NumPy will fail).
 
-4. **Download YOLO model** (if not present)
-   - The `yolov8n.pt` model will be automatically downloaded on first run
-   - Or download manually and place in `backend/` directory
+Verify installation:
+python --version
 
-5. **Start the FastAPI server**
-   ```bash
-   uvicorn main:app --reload
-   ```
-   
-   The server will run on `http://127.0.0.1:8000`
+---
 
-### Frontend Setup
+## Navigate to Backend Directory
+cd backend
 
-1. **Navigate to frontend directory**
-   ```bash
-   cd frontend
-   ```
+---
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   npm install react-scripts
-   ```
+## Create & Activate Virtual Environment (Recommended)
 
-3. **Start the development server**
-   ```bash
-   npm start
-   ```
-   
-   The app will run on `http://localhost:3000`
+Create virtual environment:
+python -m venv venv
+
+Activate it:
+
+Windows:
+venv\Scripts\activate
+
+macOS / Linux:
+source venv/bin/activate
+
+---
+
+## Install Python Dependencies
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+
+⚠️ Do NOT install dependencies manually.
+All required packages (FastAPI, YOLO, OpenCV, SQLAlchemy, JWT, Torch) are listed in requirements.txt.
+
+---
+
+## YOLO Model Download
+The YOLOv8 model (yolov8n.pt) will be automatically downloaded on first run.
+No manual download is required.
+
+---
+
+## Start the FastAPI Server
+python -m uvicorn main:app --reload
+
+Backend will run at:
+http://127.0.0.1:8000
+
+Swagger UI:
+http://127.0.0.1:8000/docs
+
+---
+
+## Troubleshooting
+If a missing module error appears:
+python -m pip install -r requirements.txt
+
+Ensure the virtual environment is activated.
+Ensure Python version is 3.11 or 3.12.
+
+---
+
+## Backend Ready
+Once the server starts without errors, the backend setup is complete.
+
+## 🎨 Frontend Setup
+
+```bash
+cd frontend
+npm install
+npm install react-scripts
+npm start
+
 
 ## 📡 API Documentation
 
@@ -279,6 +342,8 @@ Get all injury reports.
 
 #### `GET /uploads/{filename}`
 Serve uploaded images statically.
+
+
 
 ## 📖 Usage Guide
 
