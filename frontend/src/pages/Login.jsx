@@ -166,7 +166,10 @@ export default function Login() {
             <h1 className="brand">PAWS</h1>
           </div>
           <p className="login-subtitle">
-            {isLogin ? "Welcome back!" : "Join our mission to help animals"}
+            {isLogin 
+              ? (userType === "user" ? "Welcome back!" : "Welcome back, Partner!") 
+              : (userType === "user" ? "Join our mission to help animals" : "Partner with us to save lives")
+            }
           </p>
         </div>
 

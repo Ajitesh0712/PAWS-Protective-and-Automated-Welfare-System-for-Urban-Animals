@@ -71,36 +71,40 @@
 
 .user-type-toggle {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 25px;
-  background: #fffaf3;
+  background: #fdf7ee;
   padding: 6px;
-  border-radius: 12px;
+  border-radius: 30px;
   box-shadow: 0 4px 15px rgba(120, 72, 40, 0.08);
+  border: 1px solid rgba(111, 63, 29, 0.1);
 }
 
 .toggle-btn {
   flex: 1;
-  padding: 12px 20px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 8px;
+  border-radius: 24px;
   background: transparent;
-  color: #8a5a3a;
+  color: #6f3f1d;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: "Poppins", sans-serif;
+  white-space: nowrap;
 }
 
 .toggle-btn:hover {
-  background: rgba(139, 94, 60, 0.1);
+  background: rgba(242, 209, 168, 0.3);
+  color: #4e2a14;
 }
 
 .toggle-btn.active {
-  background: linear-gradient(135deg, #8b5e3c, #6f3f1d);
-  color: #fff;
-  box-shadow: 0 4px 10px rgba(111, 63, 29, 0.3);
+  background: #6f3f1d;
+  color: #fdf7ee;
+  box-shadow: 0 2px 8px rgba(111, 63, 29, 0.25);
+  font-weight: 600;
 }
 
 .login-card {

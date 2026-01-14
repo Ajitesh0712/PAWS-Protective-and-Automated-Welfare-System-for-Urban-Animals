@@ -7,6 +7,8 @@ import MissingPets from "./pages/MissingPets";
 import Partners from "./pages/Partners";
 import About from "./pages/About";
 import NGODashboard from "./pages/NGODashboard";
+import UserSettings from "./pages/UserSettings";
+import NGOSettings from "./pages/NGOSettings";
 import Navbar from "./components/Navbar";
 
 export default function App() {
@@ -22,6 +24,8 @@ export default function App() {
         <Route path="/partners" element={<Partners />} />
         <Route path="/about" element={<About />} />
         <Route path="/ngo-dashboard" element={<NGODashboard />} />
+        <Route path="/settings/user" element={<UserSettings />} />
+        <Route path="/settings/ngo" element={<NGOSettings />} />
       </Routes>
     </BrowserRouter>
   );

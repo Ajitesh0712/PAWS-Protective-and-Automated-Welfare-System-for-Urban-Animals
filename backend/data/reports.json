@@ -251,5 +251,16 @@
     "lng": "77.36284718116575",
     "status": "Pending",
     "image": "uploads/3e125c1b-c703-4765-9be8-c652dd8d5f35.png"
+  },
+  {
+    "id": 25,
+    "animal": "Cat",
+    "severity": "Moderate",
+    "score": 45,
+    "description": "Cat detected with Moderate injury. AI score: 45. Immediate attention required.",
+    "lat": "28.5355",
+    "lng": "77.391",
+    "status": "Pending",
+    "image": "uploads/78c0dc5c-6f01-42cc-bfa6-ee38754efdff.png"
   }
 ]

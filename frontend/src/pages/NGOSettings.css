@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@500&family=Inter:wght@600&family=Open+Sans:wght@400&display=swap');
+
+.settings-page {
+  min-height: 100vh;
+  background: #fdf7ee;
+  padding: 40px 20px;
+}
+
+.settings-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.back-btn {
+  background: transparent;
+  border: 2px solid #8b5e3c;
+  color: #8b5e3c;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 30px;
+}
+
+.back-btn:hover {
+  background: #8b5e3c;
+  color: #fff;
+  transform: translateX(-2px);
+}
+
+.settings-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.settings-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  color: #6f3f1d;
+  margin: 0 0 10px 0;
+}
+
+.settings-subtitle {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #8a5a3a;
+  margin: 0;
+}
+
+.settings-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  background: #fffaf3;
+  padding: 6px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(120, 72, 40, 0.08);
+  border: 1px solid rgba(111, 63, 29, 0.1);
+}
+
+.settings-tab {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #6f3f1d;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+.settings-tab:hover {
+  background: rgba(242, 209, 168, 0.3);
+  color: #4e2a14;
+}
+
+.settings-tab.active {
+  background: #6f3f1d;
+  color: #fdf7ee;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(111, 63, 29, 0.25);
+}
+
+.settings-content {
+  background: #fffaf3;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(120, 72, 40, 0.08);
+  border: 1px solid rgba(111, 63, 29, 0.1);
+}
+
+.settings-card {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #6f3f1d;
+  margin: 0 0 30px 0;
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6f3f1d;
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #d8c1a8;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  background: #fff;
+  color: #4e2a14;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #8b5e3c;
+  box-shadow: 0 0 0 3px rgba(139, 94, 60, 0.1);
+}
+
+.form-input::placeholder {
+  color: #a68b6b;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #6f3f1d;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #8b5e3c;
+}
+
+.checkbox-description {
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  color: #8a5a3a;
+  margin: 0;
+  margin-left: 32px;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.save-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #8b5e3c, #6f3f1d);
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 40px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 6px 15px rgba(111, 63, 29, 0.3);
+  transition: all 0.2s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+.save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(111, 63, 29, 0.4);
+}
+
+@media (max-width: 768px) {
+  .settings-page {
+    padding: 20px 15px;
+  }
+
+  .settings-title {
+    font-size: 32px;
+  }
+
+  .settings-content {
+    padding: 30px 20px;
+  }
+
+  .settings-tabs {
+    flex-direction: column;
+  }
+
+  .checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+}

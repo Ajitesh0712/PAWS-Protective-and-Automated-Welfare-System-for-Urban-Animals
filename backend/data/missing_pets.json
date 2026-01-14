@@ -33,5 +33,12 @@
     "location": "Sec - 18",
     "animal_type": "Dog",
     "created_at": "2026-01-14T01:32:51.670999"
+  },
+  {
+    "id": 6,
+    "image_path": "uploads/dd208101-ef86-4713-bfb3-c3d32f5ddaf1.png",
+    "location": "sec 18",
+    "animal_type": "Cat",
+    "created_at": "2026-01-14T12:40:01.326460"
   }
 ]

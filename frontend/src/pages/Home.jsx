@@ -133,6 +133,21 @@ export default function Home() {
                   </button>
                   <button 
                     className="dropdown-item"
+                    onClick={() => {
+                      setShowProfileDropdown(false);
+                      const role = localStorage.getItem("userRole");
+                      if (role === "partner") {
+                        navigate("/settings/ngo");
+                      } else {
+                        navigate("/settings/user");
+                      }
+                    }}
+                  >
+                    Settings
+                  </button>
+                  <div className="dropdown-divider"></div>
+                  <button 
+                    className="dropdown-item dropdown-item-logout"
                     onClick={handleLogout}
                   >
                     Logout

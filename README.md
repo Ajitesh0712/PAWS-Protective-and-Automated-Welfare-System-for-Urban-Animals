@@ -89,11 +89,13 @@ PAWS-Protective-and-Automated-Welfare-System-for-Urban-Animals/
 ## 🚀 Setup Instructions
 
 ### Prerequisites
-- Python 3.8 or higher
+- Python 3.8 - 3.12.1
 - Node.js 16 or higher
 - npm or yarn
 
 ### Backend Setup
+
+**ENSURE SUPPORTED PYTHON VERSION IS INSTALLED** if not then download from https://www.python.org/ftp/python/3.12.1/python-3.12.1-amd64.exe
 
 1. **Navigate to backend directory**
    ```bash
@@ -137,6 +139,7 @@ PAWS-Protective-and-Automated-Welfare-System-for-Urban-Animals/
 2. **Install dependencies**
    ```bash
    npm install
+   npm install react-scripts
    ```
 
 3. **Start the development server**
