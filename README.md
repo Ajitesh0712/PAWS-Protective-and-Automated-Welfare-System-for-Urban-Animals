@@ -136,7 +136,7 @@ PAWS-Protective-and-Automated-Welfare-System-for-Urban-Animals/
 Python **3.11 or 3.12** is REQUIRED.
 
 If not installed, download from:
-https://www.python.org/ftp/python/3.12.1/python-3.12.1-amd64.exe
+https://www.python.org/downloads/release/python-3121/
 
 ⚠️ Do NOT use Python 3.13 or 3.14 (YOLO and NumPy will fail).
 
